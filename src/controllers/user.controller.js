@@ -1,11 +1,9 @@
 import UserModel from '../models/user.model'
 import bcrypt from 'bcryptjs'
-import { validationResult } from 'express-validator'
 
 export const createUser = async (req, res) => {
     try {
-        const errors = validationResult(req)
-        if (!errors.isEmpty()) return res.status(400).send(errors)
+        
         const { name, lastName, email, password } = req.body
 
         const userExist = await UserModel.findOne({ email })

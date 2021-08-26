@@ -1,0 +1,40 @@
+{
+  "name": "pro",
+  "version": "1.0.0",
+  "description": "The CRM Service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/app.js --exec babel-node",
+    "dev": "nodemon src/app.js --exec babel-node",
+    "build": "babel src --out-dir build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arixka/Project-Api-Test-CRM.git"
+  },
+  "keywords": [],
+  "author": "Maria Siverio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arixka/Project-Api-Test-CRM/issues"
+  },
+  "homepage": "https://github.com/Arixka/Project-Api-Test-CRM#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "nodemon": "^2.0.12"
+  }
+}

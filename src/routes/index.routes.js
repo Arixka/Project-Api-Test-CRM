@@ -1,10 +1,12 @@
-// const router = require('express').Router()
 import { Router } from "express"
-
+import userRouter from './user.routes'
 const router = Router()
 
-router.get('/', (req, res)=>{
-  res.send('Empezando a hacer cositas')
-})
+
+router.use('/users', userRouter)
+// router
+//   .use('/auth', )
+//   .use('/users', )
+  
 
 module.exports = router

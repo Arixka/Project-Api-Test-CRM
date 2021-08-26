@@ -23,3 +23,5 @@ app.listen(process.env.PORT, (err) => {
     console.info(`📡 Server is running on PORT:`, process.env.PORT)
     console.info('>'.repeat(40) + '\n')
 })
+
+export default app

@@ -1,10 +1,7 @@
-import { Router } from "express"
-
+import { Router } from 'express'
+import { login } from '../controllers/auth.controller'
 const router = Router()
 
-//login
-//register
+router.post('/login', login)
 
 module.exports = router
-
-

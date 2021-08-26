@@ -1,12 +1,34 @@
-import User from '../models/user.model'
+import UserModel from '../models/user.model'
+import bcrypt from 'bcryptjs'
+import { validationResult } from 'express-validator'
 
 export const createUser = async (req, res) => {
-    res.send(req.body)
-    // const newUser = new User({ name: 'admin', lastName: 'Admin', email: 'admin@gmail.com', password: '215421', admin: true
-    // })
-    // const userSave = await newUser.save()
+    try {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) return res.status(400).send(errors)
+        const { name, lastName, email, password } = req.body
 
-    //   res.status(201).json(userSave)
+        const userExist = await UserModel.findOne({ email })
+
+        if (userExist)
+            return res.status(400).send({ msg: 'E-mail already exists' })
+
+        const salt = bcrypt.genSaltSync()
+        const passHash = bcrypt.hashSync(password, salt)
+
+        const user = new UserModel({
+            name,
+            lastName,
+            email,
+            password: passHash
+        })
+
+        const newUser = await user.save()
+
+        res.status(201).send({ msg: 'New user registered' })
+    } catch (error) {
+        res.status(401).send({ msg: error })
+    }
 }
 
 export const getAllUsers = async (req, res) => {

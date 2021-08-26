@@ -1,26 +1,23 @@
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import { generateToken } from '../helpers/generateToken'
 
-import User from '../models/user.model'
+import UserModel from '../models/user.model'
 
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body
 
-export const login = (req, res) => {
-  User.findOne({ email: req.body.email })
-    .then(user => {
-      if (user) {
-        if (bcrypt.compareSync(req.body.password, user.password)) {
-          const data = {
-            email: user.email,
-            role: user.role
-          }
-          const token = jwt.sign(data, process.env.JWT_SECRET || 'secret', { expiresIn: '7d'})
-          res.status(200).json({ token: token, ...data})
-        } else {
-          res.send('Passwords do not match')
-        }
-      } else {
-        res.send('User email not found')
-      }
-    })
-    .catch(err => res.status(500).send(err))
+        const user = await UserModel.findOne({ email })
+        if (!user) return res.status(404).json({ msg: 'Email not found' })
+
+        if (!bcrypt.compareSync(password, user.password))
+            return res.status(401).json({ msg: 'Wrong password' })
+
+        const token = await generateToken({ _id: user._id })
+
+        res.status(200).json({ user, token })
+    } catch (error) {
+        res.status(401).send({ msg: `User does not exist ${error}` })
+    }
 }

@@ -4,26 +4,17 @@ const customerSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        required: true
+        required: [true, 'Name is required']
     },
     lastName: {
         type: String,
         trim: true,
-        required: true
+        required:[true, 'Last name is required']
     },
-    // email: {
-    //     type: String,
-    //     required: true,
-    //     unique: true,
-    //     lowercase: true
-    // },
-    // password: {
-    //     type: String,
-    //     required: true
-    // },
     image: {
         type: String
-        default: 'https://res.cloudinary.com/dikram/image/upload/v1629986183/api-test/uqwtuiwhuzwuhehkmeua.png'
+        default: 'https://res.cloudinary.com/dikram/image/upload/v1629986183/api-test/uqwtuiwhuzwuhehkmeua.png',
+        required: [true, 'Image url is required']
     },
     Created: {
         type: Schema.Types.ObjectId,

@@ -21,4 +21,5 @@ services:
             - ./data:/data/db
         logging: 
           driver: none
+    
 

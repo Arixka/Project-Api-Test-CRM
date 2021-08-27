@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { generateToken } from '../helpers/generateToken'
+import { generateToken } from '../midelwares/generateToken'
 
 import UserModel from '../models/user.model'
 

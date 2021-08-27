@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { check } from 'express-validator'
-import { validate } from '../midelwares/Validate'
+import { validate } from '../midelwares/validate'
 import {
     createUser,
     getAllUsers,

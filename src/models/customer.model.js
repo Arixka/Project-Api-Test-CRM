@@ -4,11 +4,13 @@ const customerSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
+        max: 100,
         required: [true, 'Name is required']
     },
     lastName: {
         type: String,
         trim: true,
+        max: 100,
         required:[true, 'Last name is required']
     },
     image: {

@@ -4,27 +4,32 @@ const customerSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        max: 100,
-        required: [true, 'Name is required']
+        required: true
     },
     lastName: {
         type: String,
         trim: true,
-        max: 100,
-        required:[true, 'Last name is required']
+        required: true
     },
     image: {
-        type: String
+        type: String,
         default: 'https://res.cloudinary.com/dikram/image/upload/v1629986183/api-test/uqwtuiwhuzwuhehkmeua.png',
-        required: [true, 'Image url is required']
+        required: true
     },
-    Created: {
+    created: {
         type:  mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    Modified: {
+    modified: {
         type:  mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    }
+})
+customerSchema.set('toJSON', {
+    transform: function (doc, ret) {
+        ret.id = ret._id
+        delete ret._id
+        delete ret.__v
     }
 })
 

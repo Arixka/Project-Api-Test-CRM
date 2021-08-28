@@ -1,5 +1,4 @@
 import UserModel from '../models/user.model'
-import RoleModel from '../models/role.model'
 import bcrypt from 'bcryptjs'
 
 /**
@@ -23,10 +22,10 @@ export const createUser = async (req, res) => {
         })
 
         const newUser = await user.save()
-        res.status(201).send({ msg: 'New user registered', user: newUser })
+        res.status(201).send({ msg: 'New user registered', newUser })
     } catch (error) {
         console.log(error)
-        res.status(401).send({ msg: error })
+        res.status(500).send({ msg: error })
     }
 }
 
@@ -76,12 +75,12 @@ export const updateUserById = async (req, res) => {
             restUser.password = bcrypt.hashSync(req.body.password, salt)
         }
 
-        const user = await UserModel.findOneAndUpdate(
+        const user = await UserModel.findByIdAndUpdate(
             req.params.userId,
             restUser,
             { new: true }
         )
-        res.status(201).send({ msg: 'User updated', user: user })
+        res.status(201).send({ msg: 'User updated', user })
     } catch (error) {
         console.log(error)
         res.status(500).send({ msg: error })
@@ -96,8 +95,8 @@ export const updateUserById = async (req, res) => {
 export const deleteUserById = async (req, res) => {
     try {
         const  user  = await UserModel.findByIdAndDelete(req.params.userId)
-        const userAuth = req.userAuth
-        res.status(200).json({ msg: 'User deleted', user, userAuth })
+        
+        res.status(200).json({ msg: 'User deleted', user })
     } catch (error) {
         console.log(error)
         res.status(500).send({ msg: error })

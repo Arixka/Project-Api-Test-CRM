@@ -5,8 +5,8 @@ import authRouter from './auth.routes'
 const router = Router()
 
 
-router.use('/users', userRouter)
 router.use('/auth', authRouter)
+router.use('/users', userRouter)
 
 
 module.exports = router

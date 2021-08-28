@@ -70,9 +70,8 @@ export const getUserById = async (req, res) => {
  */
 export const updateUserById = async (req, res) => {
     try {
-
-        const {role, ...restUser } = req.body
-        if(req.body.password){
+        const { role, ...restUser } = req.body
+        if (req.body.password) {
             const salt = bcrypt.genSaltSync()
             restUser.password = bcrypt.hashSync(req.body.password, salt)
         }
@@ -96,10 +95,9 @@ export const updateUserById = async (req, res) => {
  */
 export const deleteUserById = async (req, res) => {
     try {
-
-        const { user } = await UserModel.findByIdAndDelete(req.params.userId)
-
-        res.status(200).json({ msg: 'User deleted', user: user })
+        const  user  = await UserModel.findByIdAndDelete(req.params.userId)
+        const userAuth = req.userAuth
+        res.status(200).json({ msg: 'User deleted', user, userAuth })
     } catch (error) {
         console.log(error)
         res.status(500).send({ msg: error })

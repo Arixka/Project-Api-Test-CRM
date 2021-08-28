@@ -4,31 +4,28 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        max: 100,
-        required: [true, 'Name is required']
+        required: true
     },
     lastName: {
         type: String,
-        max: 100,
         trim: true,
-        required: [true, 'Last name is required']
+        required: true
     },
     email: {
         type: String,
+        lowercase: true,
         required: true,
-        unique: true,
-        lowercase: [true, 'E-mail is required']
+        unique: true
     },
     password: {
         type: String,
-        min: 6,
-        max: 100,
-        required: [true, 'Password is required']
+        required: true
     },
     role: {
         type: String,
-        enum: ['Admin', 'User'],
-        default: 'User'
+        enum: ['ADMIN', 'USER'],
+        default: 'USER',
+        required: true
     }
 })
 
@@ -40,5 +37,6 @@ userSchema.set('toJSON', {
         delete ret.password
     }
 })
+
 
 export default mongoose.model('user', userSchema)

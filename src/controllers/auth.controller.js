@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { generateToken } from '../midelwares/generateToken'
+import { generateToken } from '../middlewares/generateToken'
 
 import UserModel from '../models/user.model'
 
@@ -20,4 +20,14 @@ export const login = async (req, res) => {
     } catch (error) {
         res.status(401).send({ msg: `User does not exist ${error}` })
     }
+}
+
+export const auth0 = async (req, res)=> {
+    const { id_token } = req.body
+    try {
+        const googleUser = await googleVerify(id_token)
+        res.json({msg:'Login with google corrected',id_token})
+      } catch (error) {
+        res.json({msg:'E-mail not valid'})
+      }
 }

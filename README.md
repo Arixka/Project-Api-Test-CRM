@@ -58,7 +58,7 @@ The CRM Service
 | POST   | '/users/'        | YES  | Admin  | Create a new customer       |
 | GET    | '/users/'         | YES  | Admin  | Get users list          |
 | GET    | '/users/:usersId' | YES  | Admin  | Get users profile       |
-| PUT    | '/users/:usersId' | YES  | Admin  | Update users information |
+| PATCH    | '/users/:usersId' | YES  | Admin  | Update users information |
 | DELETE | '/users/:usersId' | YES  | Admin  | Delete a users           |
 
 
@@ -69,7 +69,7 @@ The CRM Service
 | POST   | '/customers/'    | YES  | Create a new customer       |
 | GET    | '/customers/'    | YES  | Get customers list          |
 | GET    | '/customers/:customersId' | YES  | Get customers profile       |
-| PUT    | '/customers/:customersId' | YES  | Update customer information |
+| PATCH    | '/customers/:customersId' | YES  | Update customer information |
 | DELETE | '/customers/:customersId' | YES  | Delete a customer           |
 
 

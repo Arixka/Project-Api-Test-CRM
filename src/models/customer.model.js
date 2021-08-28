@@ -19,11 +19,11 @@ const customerSchema = new mongoose.Schema({
         required: [true, 'Image url is required']
     },
     Created: {
-        type: Schema.Types.ObjectId,
+        type:  mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     Modified: {
-        type: Schema.Types.ObjectId,
+        type:  mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
 })

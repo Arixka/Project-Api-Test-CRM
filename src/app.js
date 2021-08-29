@@ -12,8 +12,7 @@ const app = express()
     .use(express.urlencoded({ extended: true }))
     .use(express.json())
     .use(require('./routes/index.routes'))
-
-require('./server')
+    require('./config/server')
 
 app.listen(process.env.PORT, (err) => {
     if (err) {

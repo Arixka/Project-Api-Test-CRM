@@ -2,7 +2,7 @@
   "name": "pro",
   "version": "1.0.0",
   "description": "The CRM Service",
-  "main": "index.js",
+  "main": " src/app.js",
   "scripts": {
     "start": "node build/app.js --exec babel-node",
     "dev": "nodemon src/app.js --exec babel-node",

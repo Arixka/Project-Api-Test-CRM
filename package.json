@@ -8,7 +8,7 @@
     "npm": "6.14.x"
   },
   "scripts": {
-    "start": "node build/app.js --exec babel-node",
+    "start": "node src/app.js --exec babel-node",
     "dev": "nodemon src/app.js --exec babel-node",
     "build": "babel src --out-dir build",
     "test": "jest --verbose"

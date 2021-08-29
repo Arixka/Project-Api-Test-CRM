@@ -13,6 +13,7 @@ mongoose
             console.log('Connected to %s', db.connection.host)
             console.log('\nPress CTRL + C to stop the process. \n')
         }
+        console.log('Database ready');
     })
     .catch((err) => {
         console.error('App starting error:', err.message)

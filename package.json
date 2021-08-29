@@ -1,5 +1,5 @@
 {
-  "name": "pro",
+  "name": "api-rest-crm",
   "version": "1.0.0",
   "description": "The CRM Service",
   "main": " src/app.js",
@@ -40,8 +40,7 @@
     "multer": "^1.4.3",
     "passport": "^0.4.1",
     "passport-auth0": "^1.4.0",
-    "passport-jwt": "^4.0.0",
-    "yup": "^0.32.9"
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",

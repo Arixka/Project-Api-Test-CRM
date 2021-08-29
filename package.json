@@ -4,7 +4,8 @@
   "description": "The CRM Service",
   "main": "src/app.js",
   "engines":{
-    "node": "14.17.0"
+    "node": "14.17.x",
+    "npm": "6.14.x"
   },
   "scripts": {
     "start": "node build/app.js --exec babel-node",

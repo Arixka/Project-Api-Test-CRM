@@ -1,5 +1,5 @@
 {
-  "name": "pro",
+  "name": "api-rest-crm",
   "version": "1.0.0",
   "description": "The CRM Service",
   "main": "index.js",

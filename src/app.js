@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express')
 import cors from 'cors'
 import morgan from 'morgan'
 import mongoose from 'mongoose'

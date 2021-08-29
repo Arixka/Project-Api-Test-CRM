@@ -2,7 +2,10 @@
   "name": "api-rest-crm",
   "version": "1.0.0",
   "description": "The CRM Service",
-  "main": "index.js",
+  "main": "src/app.js",
+  "engines":{
+    "node": "14.17.0"
+  },
   "scripts": {
     "start": "node build/app.js --exec babel-node",
     "dev": "nodemon src/app.js --exec babel-node",

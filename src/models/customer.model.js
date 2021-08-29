@@ -27,7 +27,7 @@ const customerSchema = new mongoose.Schema({
 })
 customerSchema.set('toJSON', {
     transform: function (doc, ret) {
-        ret.id = ret._id
+        ret.uid = ret._id
         delete ret._id
         delete ret.__v
     }

@@ -9,7 +9,7 @@ export const checkToken = async (req, res, next) => {
         try {
             const { uid } = jwt.verify(token, process.env.SECRET_JWT)
 
-            const user = await UserModel.findById({ _id: uid })
+            const user = await UserModel.findById(uid)
 
             if (!user) return res.status(401).json({ msg: 'User not exist' })
 

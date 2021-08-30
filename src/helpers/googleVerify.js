@@ -7,8 +7,8 @@ export const googleVerify = async (idToken) => {
         idToken,
         audience: process.env.OAUTH_CLIENT_ID 
     })
-    const payload = ticket.getPayload()
+    const {name,email,picture: image} = ticket.getPayload()
 
-    return payload
+    return {name,email,image}
 }
 

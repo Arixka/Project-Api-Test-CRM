@@ -14,7 +14,7 @@ import {
 const router = Router()
 
 router.get('/', checkToken, getAllCustomers)
-
+//TODO añadir phone required .isMobilePhone()
 router.get(
   '/:userId',
   [

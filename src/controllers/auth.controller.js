@@ -25,9 +25,20 @@ export const login = async (req, res) => {
 export const googleLogin = async (req, res, next) => {
     try {
         const { id_token } = req.body
-        const userGoogle = await googleVerify(id_token)
-        res.status(200).json({ msg: 'Login with google corrected', id_token })
+        const { name, email, image } = await googleVerify(id_token)
+
+        let user = await UserModel.findOne({ email })
+        if (!user) throw new Error('Unauthorized user')
+
+        const data = {
+            image,
+            google: true
+        }
+        const userUpdate = await UserModel.findByIdAndUpdate(user._id, data, {
+            new: true
+        })
+        res.status(201).json({ msg: 'Login with google corrected', userUpdate })
     } catch (error) {
-        res.status(401).send({ msg: `E-mail not valid ${error}` })
+        res.status(401).send({ msg: `Token not valid ${error}` })
     }
 }

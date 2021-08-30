@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
         enum: ['ADMIN', 'USER'],
         default: 'USER',
         required: true
+    },
+    google: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -37,6 +41,5 @@ userSchema.set('toJSON', {
         delete ret.password
     }
 })
-
 
 export default mongoose.model('user', userSchema)

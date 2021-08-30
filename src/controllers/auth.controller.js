@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { generateJWT } from '../helpers/generateJWT'
+import { googleVerify } from '../helpers/googleVerify'
 
 import UserModel from '../models/user.model'
 
@@ -21,12 +22,12 @@ export const login = async (req, res) => {
     }
 }
 
-export const auth0 = async (req, res) => {
-    const { id_token } = req.body
+export const googleLogin = async (req, res, next) => {
     try {
-        const googleUser = await googleVerify(id_token)
-        res.json({ msg: 'Login with google corrected', id_token })
+        const { id_token } = req.body
+        const userGoogle = await googleVerify(id_token)
+        res.status(200).json({ msg: 'Login with google corrected', id_token })
     } catch (error) {
-        res.json({ msg: 'E-mail not valid' })
+        res.status(401).send({ msg: `E-mail not valid ${error}` })
     }
 }

@@ -20,6 +20,11 @@ var customerSchema = new _mongoose.default.Schema({
     trim: true,
     required: true
   },
+  phone: {
+    type: String,
+    unique: true,
+    required: true
+  },
   image: {
     type: String,
     default: 'https://res.cloudinary.com/dikram/image/upload/v1629986183/api-test/uqwtuiwhuzwuhehkmeua.png',

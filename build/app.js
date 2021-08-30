@@ -21,10 +21,13 @@ _dotenv.default.config();
 
 var app = (0, _express.default)().use((0, _cors.default)()).use((0, _morgan.default)(process.env.NODE_ENV)).use(_express.default.urlencoded({
   extended: true
-})).use(_express.default.json()).use(require('./routes/index.routes'));
+})).use(_express.default.json()).use(require('./routes/index.routes')).use(_express.default.static('public'));
 
 require('./config/server');
 
+app.get('/', (req, res) => {
+  res.send('Hello world');
+});
 app.listen(process.env.PORT, err => {
   if (err) {
     throw new Error(err);

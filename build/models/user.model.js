@@ -20,6 +20,10 @@ var userSchema = new _mongoose.default.Schema({
     trim: true,
     required: true
   },
+  image: {
+    type: String,
+    default: 'https://res.cloudinary.com/dikram/image/upload/v1629986183/api-test/uqwtuiwhuzwuhehkmeua.png'
+  },
   email: {
     type: String,
     lowercase: true,
@@ -35,6 +39,10 @@ var userSchema = new _mongoose.default.Schema({
     enum: ['ADMIN', 'USER'],
     default: 'USER',
     required: true
+  },
+  google: {
+    type: Boolean,
+    default: false
   }
 });
 userSchema.set('toJSON', {

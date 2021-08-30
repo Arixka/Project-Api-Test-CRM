@@ -8,20 +8,42 @@
             name="google-signin-client_id"
             content="475086611904-ffkf4e9u92oc9okokqkd56qc61f8omb6.apps.googleusercontent.com"
         />
+        <style>
+              button {
+                background-color: #9142bf;
+                color: white;
+                padding: 14px 0;
+                margin: 10px 0;
+                border: none;
+                cursor: grabbing;
+                width: 100%;
+                }
+                button:hover {
+                opacity: 0.8;
+                }
+                html, body {
+                display: flex;
+                justify-content: center;
+                font-family: Roboto, Arial, sans-serif;
+                font-size: 15px;
+                }
+        </style>
         <title>API-TEST</title>
     </head>
 
     <body>
-        <h3>Google Auth</h3>
-
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <script
-            src="https://apis.google.com/js/platform.js"
-            async
-            defer
-        ></script>
+        src="https://apis.google.com/js/platform.js"
+        async
+        defer
+    ></script>
 
-        <button href="#" onclick="signOut()">Sign out</button>
+ 
+            <div class="formcontainer">
+              
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <button href="#" onclick="signOut()">Sign out</button>
+
         <script>
             var url =
                 window.location.hostname.includes('localhost') ?

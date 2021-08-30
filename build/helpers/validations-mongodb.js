@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.idCustomerExist = exports.idUserExist = exports.emailExist = exports.roleValid = void 0;
+exports.idCustomerExist = exports.idUserExist = exports.customerExist = exports.emailExist = exports.roleValid = void 0;
 
 var _role = _interopRequireDefault(require("../models/role.model"));
 
@@ -50,27 +50,42 @@ var emailExist = /*#__PURE__*/function () {
 
 exports.emailExist = emailExist;
 
+var customerExist = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator(function* (phone) {
+    var customerExist = yield _customer.default.findOne({
+      phone
+    });
+    if (customerExist) throw new Error('Customer already exists');
+  });
+
+  return function customerExist(_x3) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+exports.customerExist = customerExist;
+
 var idUserExist = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator(function* (id) {
+  var _ref4 = _asyncToGenerator(function* (id) {
     var userExist = yield _user.default.findById(id);
     if (!userExist) throw new Error('No user exists with that id');
   });
 
-  return function idUserExist(_x3) {
-    return _ref3.apply(this, arguments);
+  return function idUserExist(_x4) {
+    return _ref4.apply(this, arguments);
   };
 }();
 
 exports.idUserExist = idUserExist;
 
 var idCustomerExist = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator(function* (id) {
+  var _ref5 = _asyncToGenerator(function* (id) {
     var custExist = yield _customer.default.findById(id);
     if (!custExist) throw new Error('No customer exists with that id');
   });
 
-  return function idCustomerExist(_x4) {
-    return _ref4.apply(this, arguments);
+  return function idCustomerExist(_x5) {
+    return _ref5.apply(this, arguments);
   };
 }();
 

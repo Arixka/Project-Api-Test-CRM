@@ -30,11 +30,13 @@ var createCustomer = /*#__PURE__*/function () {
       var {
         name,
         lastName,
+        phone,
         image
       } = req.body;
       var customer = yield (0, _customer.default)({
         name,
         lastName,
+        phone,
         image
       });
       var userAuth = req.userAuth;

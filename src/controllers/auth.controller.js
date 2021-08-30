@@ -5,6 +5,11 @@ import { googleVerify } from '../helpers/googleVerify'
 
 import UserModel from '../models/user.model'
 
+/**
+ * @route post /auth/login
+ * @access User
+ * @returns User Token
+ */
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -22,6 +27,11 @@ export const login = async (req, res) => {
     }
 }
 
+/**
+ * @route post /auth/google
+ * @access User
+ * @returns userUpdate Token
+ */
 export const googleLogin = async (req, res, next) => {
     try {
         const { id_token } = req.body
@@ -37,7 +47,8 @@ export const googleLogin = async (req, res, next) => {
         const userUpdate = await UserModel.findByIdAndUpdate(user._id, data, {
             new: true
         })
-        res.status(201).json({ msg: 'Login with google corrected', userUpdate })
+        const token = await generateJWT(user._id)
+        res.status(201).json({ msg: 'Login with google corrected', userUpdate, token })
     } catch (error) {
         res.status(401).send({ msg: `Token not valid ${error}` })
     }

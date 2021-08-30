@@ -13,6 +13,10 @@ export const emailExist = async (email) => {
     const emailExist = await UserModel.findOne({ email })
     if (emailExist) throw new Error('E-mail already exists')
 }
+export const customerExist = async (phone) => {
+    const customerExist = await CustModel.findOne({ phone })
+    if (customerExist) throw new Error('Customer already exists')
+}
 
 export const idUserExist = async (id)=>{
     const userExist = await UserModel.findById(id)

@@ -8,10 +8,12 @@ import CustModel from '../models/customer.model'
 
 export const createCustomer = async (req, res) => {
     try {
-        const { name, lastName, image } = req.body
+        const { name, lastName, phone, image } = req.body
+
         const customer = await CustModel({
             name,
             lastName,
+            phone,
             image
         })
 

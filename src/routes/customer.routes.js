@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { check } from 'express-validator'
 import { validateReq } from '../middlewares/validateReq'
 import { checkToken, isAdmin, authorizedRole } from '../middlewares/checkAuth'
-import { emailExist, idCustomerExist, roleValid } from '../helpers/validations-mongodb'
+import { emailExist, idCustomerExist,customerExist, roleValid } from '../helpers/validations-mongodb'
 import {
     createCustomer,
     getAllCustomers,
@@ -11,10 +11,12 @@ import {
     deleteCustomerById
 } from '../controllers/customer.controller'
 
+
+
 const router = Router()
 
 router.get('/', checkToken, getAllCustomers)
-//TODO añadir phone required .isMobilePhone()
+
 router.get(
   '/:userId',
   [
@@ -34,6 +36,9 @@ router.post(
         authorizedRole('ADMIN', 'USER'),
         check('name', 'Name is required').not().isEmpty(),
         check('lastName', 'LastName is required').not().isEmpty(),
+        check('phone', 'Phone is required').not().isEmpty(),
+        check('phone').custom(customerExist),
+        check('phone', 'Must be a phone number').isMobilePhone(),
         check('image', 'Must upload an image').not().isEmpty(),
         validateReq
     ],

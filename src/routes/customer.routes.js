@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { check } from 'express-validator'
 import { validateReq } from '../middlewares/validateReq'
+import { validateImage } from '../middlewares/validateImage'
 import { checkToken, isAdmin, authorizedRole } from '../middlewares/checkAuth'
 import {
     emailExist,
@@ -15,6 +16,7 @@ import {
     updateCustomerById,
     deleteCustomerById
 } from '../controllers/customer.controller'
+
 
 const router = Router()
 
@@ -37,6 +39,7 @@ router.post(
     [
         checkToken,
         authorizedRole('ADMIN', 'USER'),
+        validateImage,
         check('name', 'Name is required').not().isEmpty(),
         check('lastName', 'LastName is required').not().isEmpty(),
         check('phone', 'Phone is required').not().isEmpty(),
@@ -52,6 +55,7 @@ router.put(
     [
         checkToken,
         authorizedRole('ADMIN', 'USER'),
+        validateImage,
         check('userId', 'Id not valid').isMongoId(),
         check('userId').custom(idCustomerExist),
         validateReq

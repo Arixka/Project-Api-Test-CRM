@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     image: {
         type: String,
         default:
-            'https://res.cloudinary.com/dikram/image/upload/v1629986183/api-test/uqwtuiwhuzwuhehkmeua.png'
+            'https://res.cloudinary.com/dikram/image/upload/v1630412483/sm0aemzrvvrvakcjvktg.png'
     },
     email: {
         type: String,

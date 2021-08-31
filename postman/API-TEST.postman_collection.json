@@ -1,0 +1,510 @@
+{
+	"info": {
+		"_postman_id": "b341a686-2ff8-4fba-acab-2570d31b57a3",
+		"name": "API-TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json()",
+									"pm.collectionVariables.get(\"variable_key\");",
+									"pm.environment.set(\"token\", jsonResponse.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"email\": \"authUser@gmail.com\", \n     \"password\": \"215421\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login myself",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json()",
+									"pm.collectionVariables.get(\"variable_key\");",
+									"pm.environment.set(\"token\", jsonResponse.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"email\": \"marisiver25@gmail.com\", \n     \"password\": \"215421\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Google myself",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json()",
+									"pm.collectionVariables.get(\"variable_key\");",
+									"pm.environment.set(\"token\", jsonResponse.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"id_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjgxOWQxZTYxNDI5ZGQzZDNjYWVmMTI5YzBhYzJiYWU4YzZkNDZmYmMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNDc1MDg2NjExOTA0LWZma2Y0ZTl1OTJvYzlva29rcWtkNTZxYzYxZjhvbWI2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNDc1MDg2NjExOTA0LWZma2Y0ZTl1OTJvYzlva29rcWtkNTZxYzYxZjhvbWI2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzOTY2MDk4Mjk3MTA0NTIwNzMwIiwiZW1haWwiOiJtYXJpc2l2ZXIyNUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Il9HOUg3UWJlcFNSdEFBY0xlRFJkQmciLCJuYW1lIjoiQXJpeGthIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdpQUxvZEhBbjlVcVRRMHhjamVRNlNpdUN3ZXdDV0R0aDNQM00yN2x3PXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkFyaXhrYSIsImxvY2FsZSI6ImVzIiwiaWF0IjoxNjMwMzE2Nzk4LCJleHAiOjE2MzAzMjAzOTgsImp0aSI6IjRhMTNkYmQ1NGU0OWMzODM4Y2ZhZDE4MjA5ZDY5ZjMwOWNiNTE0OWEifQ.lQprKRTIo03PeNJH0hSEjSKJ9g2p0OrdiNgvlfPbIcirO105Soj0Dnd2v1Jg2LvpdmJDB8C49kFF9nHP7XHxe6rfIm0uILm2SjM_i7j1BENKRx9alsLJUbOplzIlGtJNX8KEaIi9WIIM_kOZ_1CjXiVNB1C8_XzVP_MiATgGiQSex-crGBF5emqPaNHOhK9z-Wy4NiXdKlNfxh7j_8pcdeDRbp7FrbDE2e7Qlr1in8B15zX7dbowUNWwTwAMypYLTJi9SNy4H7tQI2jE99v5ucPIlJmuCWHx-X_RxIDSP6JP2LADZCzduISa0pKaVzoexZQGDLwCSQ4pXV6i4J5I1Q\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/google",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"google"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json()",
+									"pm.collectionVariables.get(\"variable_key\");",
+									"pm.environment.set(\"token\", jsonResponse.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"email\": \"authAdmin@gmail.com\", \n     \"password\": \"215421\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/arixka/Imágenes/fotos dikram/template.png"
+								},
+								{
+									"key": "name",
+									"value": "Julio",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Verne",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "600000002",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/customer",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/customer",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer by Id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "name",
+									"value": "Mario",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Martirio",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/customer/612e193fc95e2adcdbcef397",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"customer",
+								"612e193fc95e2adcdbcef397"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/customer/612e193fc95e2adcdbcef397",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"customer",
+								"612e193fc95e2adcdbcef397"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/customer/612a63a942ca53bd8d59f49b",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"customer",
+								"612a63a942ca53bd8d59f49b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = pm.response.json()",
+									"pm.collectionVariables.get(\"variable_key\");",
+									"pm.environment.set(\"id\", jsonResponse.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"name\": \"Alexis\",\n     \"lastName\": \"Guanche\", \n     \"email\": \"guanchito@gmail.com\", \n     \"password\": \"215421\",\n     \"role\": \"USER\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User by Id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Adrian\",\n    \"lastName\": \"Duran\",\n    \"password\": \"11111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/61296fe70e9f5553f7d167e3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"61296fe70e9f5553f7d167e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/user/61297dea23a2f3add8d002f6d",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"61297dea23a2f3add8d002f6d"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/user/612a63a942ca53bd8d59f49b",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"612a63a942ca53bd8d59f49b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

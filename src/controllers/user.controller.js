@@ -36,9 +36,15 @@ export const createUser = async (req, res) => {
  */
 
 export const getAllUsers = async (req, res) => {
-    //TODO paginado
+
     try {
-        const users = await UserModel.find()
+        const { page, limit } = req.query
+        const options = {
+          page: parseInt(page, 10) || 1,
+          limit: parseInt(limit, 10) || 10,
+        }
+        const users = await UserModel.paginate({}, options)
+
         res.status(200).json(users)
     } catch (error) {
         console.log(error)

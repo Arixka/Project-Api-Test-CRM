@@ -1,5 +1,5 @@
-<svg fill="none" viewBox="0 0 125 20" xmlns="http://www.w3.org/2000/svg">
-    <foreignObject  width="125" height="20">
+<svg fill="none" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject  width="100" height="20">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
                 .rainbow {
@@ -9,7 +9,7 @@
                     font-family: tahoma;
                 }
                 .rainbow_text_animated {
-                    background: linear-gradient(to right, #6666ff, #0099ff,  #6666ff);
+                    background: linear-gradient(to right, #a666ff, #0099ff,  #a666ff);
                     -webkit-background-clip: text;
                     background-clip: text;
                     color: transparent;
@@ -26,7 +26,7 @@
                     }
                 }
             </style>
-            <text class="rainbow rainbow_text_animated">{ Project-Api-Test }</text>
+            <text align="center" class="rainbow rainbow_text_animated">{ Project-Api-Test }</text>
         </div>
     </foreignObject>
 </svg>

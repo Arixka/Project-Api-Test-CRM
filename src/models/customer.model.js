@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import paginate from 'mongoose-paginate-v2'
 
 const customerSchema = new mongoose.Schema({
     name: {
@@ -38,5 +39,7 @@ customerSchema.set('toJSON', {
         delete ret.__v
     }
 })
+
+customerSchema.plugin(paginate)
 
 export default mongoose.model('customer', customerSchema)

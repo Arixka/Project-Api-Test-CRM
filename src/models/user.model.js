@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import paginate from 'mongoose-paginate-v2'
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -46,5 +47,7 @@ userSchema.set('toJSON', {
         delete ret.password
     }
 })
+
+userSchema.plugin(paginate)
 
 export default mongoose.model('user', userSchema)

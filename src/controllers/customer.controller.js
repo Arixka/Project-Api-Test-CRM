@@ -2,6 +2,7 @@ import CustModel from '../models/customer.model'
 import { uploadFile } from '../helpers/uploadFile'
 const cloudinary = require('cloudinary').v2
 cloudinary.config(process.env.CLOUDINARY_URL)
+
 /**
  * @route Post /customers/{id}
  * @access Admin User
@@ -10,10 +11,7 @@ cloudinary.config(process.env.CLOUDINARY_URL)
 
 export const createCustomer = async (req, res) => {
     try {
-
         const { name, lastName, phone } = req.body
-
-        // const image = await uploadFile(req.files)
 
         const { tempFilePath } = req.files.image
         const { secure_url } = await cloudinary.uploader.upload(tempFilePath)
@@ -46,9 +44,14 @@ export const createCustomer = async (req, res) => {
  */
 
 export const getAllCustomers = async (req, res) => {
-    //TODO paginado
+
     try {
-        const customers = await CustModel.find()
+        const { page, limit } = req.query
+        const options = {
+            page: parseInt(page, 10) || 1,
+            limit: parseInt(limit, 10) || 10
+        }
+        const customers = await CustModel.paginate({}, options)
         res.status(200).json(customers)
     } catch (error) {
         console.log(error)
@@ -92,7 +95,9 @@ export const updateCustomerById = async (req, res) => {
             const [public_id] = nombre.split('.')
             cloudinary.uploader.destroy(public_id)
             const { tempFilePath } = req.files.image
-            const { secure_url } = await cloudinary.uploader.upload(tempFilePath)
+            const { secure_url } = await cloudinary.uploader.upload(
+                tempFilePath
+            )
             customer.image = secure_url
         }
 

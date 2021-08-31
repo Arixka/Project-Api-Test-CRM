@@ -1,6 +1,7 @@
 import CustModel from '../models/customer.model'
 import { uploadFile } from '../helpers/uploadFile'
-
+const cloudinary = require('cloudinary').v2
+cloudinary.config(process.env.CLOUDINARY_URL)
 /**
  * @route Post /customers/{id}
  * @access Admin User
@@ -18,7 +19,11 @@ export const createCustomer = async (req, res) => {
         }
         const { name, lastName, phone } = req.body
 
-        const image = await uploadFile(req.files)
+        // const image = await uploadFile(req.files)
+
+        const { tempFilePath } = req.files.image
+        const { secure_url } = await cloudinary.uploader.upload(tempFilePath)
+        const image = secure_url
         const customer = await CustModel({
             name,
             lastName,
@@ -87,7 +92,18 @@ export const updateCustomerById = async (req, res) => {
             restCustomer,
             { new: true }
         )
+        if (req.files.image && customer.image) {
+            const nombreArr = customer.image.split('/')
+            const nombre = nombreArr[nombreArr.length - 1]
+            const [public_id] = nombre.split('.')
+            cloudinary.uploader.destroy(public_id)
+            const { tempFilePath } = req.files.image
+            const { secure_url } = await cloudinary.uploader.upload(tempFilePath)
+            customer.image = secure_url
+        }
+
         customer.modified = req.userAuth.id
+
         const customerUpdate = await customer.save()
         res.status(201).send({ msg: 'Customer updated', customerUpdate })
     } catch (error) {

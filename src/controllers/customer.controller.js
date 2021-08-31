@@ -86,7 +86,7 @@ export const updateCustomerById = async (req, res) => {
             restCustomer,
             { new: true }
         )
-        if (req.files.image && customer.image) {
+        if (req.files && req.files.image && customer.image) {
             const nombreArr = customer.image.split('/')
             const nombre = nombreArr[nombreArr.length - 1]
             const [public_id] = nombre.split('.')

@@ -55,7 +55,6 @@ router.put(
     [
         checkToken,
         authorizedRole('ADMIN', 'USER'),
-        validateImage,
         check('userId', 'Id not valid').isMongoId(),
         check('userId').custom(idCustomerExist),
         validateReq

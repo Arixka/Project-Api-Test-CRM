@@ -7,6 +7,8 @@ exports.deleteCustomerById = exports.updateCustomerById = exports.getCustomerByI
 
 var _customer = _interopRequireDefault(require("../models/customer.model"));
 
+var _uploadFile = require("../helpers/uploadFile");
+
 var _excluded = ["created", "modified"];
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -19,20 +21,31 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+var cloudinary = require('cloudinary').v2;
+
+cloudinary.config(process.env.CLOUDINARY_URL);
 /**
  * @route Post /customers/{id}
  * @access Admin User
  * @returns customer
  */
+
 var createCustomer = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(function* (req, res) {
     try {
       var {
         name,
         lastName,
-        phone,
-        image
-      } = req.body;
+        phone
+      } = req.body; // const image = await uploadFile(req.files)
+
+      var {
+        tempFilePath
+      } = req.files.image;
+      var {
+        secure_url
+      } = yield cloudinary.uploader.upload(tempFilePath);
+      var image = secure_url;
       var customer = yield (0, _customer.default)({
         name,
         lastName,
@@ -133,6 +146,21 @@ var updateCustomerById = /*#__PURE__*/function () {
       var customer = yield _customer.default.findByIdAndUpdate(req.params.userId, restCustomer, {
         new: true
       });
+
+      if (req.files && req.files.image && customer.image) {
+        var nombreArr = customer.image.split('/');
+        var nombre = nombreArr[nombreArr.length - 1];
+        var [public_id] = nombre.split('.');
+        cloudinary.uploader.destroy(public_id);
+        var {
+          tempFilePath
+        } = req.files.image;
+        var {
+          secure_url
+        } = yield cloudinary.uploader.upload(tempFilePath);
+        customer.image = secure_url;
+      }
+
       customer.modified = req.userAuth.id;
       var customerUpdate = yield customer.save();
       res.status(201).send({

@@ -15,13 +15,18 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _dotenv = _interopRequireDefault(require("dotenv"));
 
+var _expressFileupload = _interopRequireDefault(require("express-fileupload"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _dotenv.default.config();
 
 var app = (0, _express.default)().use((0, _cors.default)()).use((0, _morgan.default)(process.env.NODE_ENV)).use(_express.default.urlencoded({
   extended: true
-})).use(_express.default.json()).use(require('./routes/index.routes')).use(_express.default.static('public'));
+})).use(_express.default.json()).use((0, _expressFileupload.default)({
+  useTempFiles: true,
+  tempFileDir: '/tmp/'
+})).use(require('./routes/index.routes')).use(_express.default.static('public'));
 
 require('./config/server');
 

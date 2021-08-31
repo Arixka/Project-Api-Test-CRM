@@ -8,13 +8,10 @@ var _auth = _interopRequireDefault(require("./auth.routes"));
 
 var _customer = _interopRequireDefault(require("./customer.routes"));
 
-var _upload = _interopRequireDefault(require("./upload.routes"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = (0, _express.Router)();
 router.use('/auth', _auth.default);
 router.use('/user', _user.default);
 router.use('/customer', _customer.default);
-router.use('/upload', _upload.default);
 module.exports = router;

@@ -1,15 +1,21 @@
+<div align="center">
+        <img src="title.svg"  width="400"> 
+</div>
 
-<h1 align="center"> <img src="title.svg"  width="400"> </h1>
 
 
-                         
+</div>          
                          
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+<div align="center">
 
 ![Issues](https://img.shields.io/github/issues/Arixka/Project-Api-Test-CRM?color=blueviolet)
 ![Forks](https://img.shields.io/github/forks/Arixka/Project-Api-Test-CRM?color=blueviolet)
 ![Starts](https://img.shields.io/github/stars/Arixka/Project-Api-Test-CRM?color=blueviolet)
 ![License](https://img.shields.io/github/license/Arixka/Project-Api-Test-CRM?color=blueviolet)
+
+</div>   
 
 <h2 id="table-of-contents"> Contents</h2>
 

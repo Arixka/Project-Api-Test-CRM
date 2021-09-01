@@ -33,7 +33,7 @@ export const createCustomer = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
-        res.status(500).send({ msg: error })
+        res.status(400).send({ msg: error })
     }
 }
 
@@ -71,7 +71,7 @@ export const getCustomerById = async (req, res) => {
         res.status(200).json(customer)
     } catch (error) {
         console.log(error)
-        res.status(500).send({ msg: error })
+        res.status(404).send({ msg: error })
     }
 }
 

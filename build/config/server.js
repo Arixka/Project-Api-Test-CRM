@@ -8,14 +8,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _dotenv.default.config();
 
-_mongoose.default.connect(process.env.MONGO_URL_ATLAS, {
+var {
+  MONGO_URL_ATLAS,
+  MONGO_URL_ATLAS_TEST,
+  NODE_ENV
+} = process.env;
+var connectionUrl = NODE_ENV === 'test' ? MONGO_URL_ATLAS_TEST : MONGO_URL_ATLAS;
+
+_mongoose.default.connect(connectionUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(db => {
-  if (process.env.NODE_ENV !== 'dev') {
-    console.log('App is running ... \n');
-    console.log('Connected to %s', db.connection.host);
-    console.log('\nPress CTRL + C to stop the process. \n');
+  if (NODE_ENV !== 'dev') {
+    console.log('Connected to %s', db.connection.name);
   }
 }).catch(err => {
   console.error('App starting error:', err.message);

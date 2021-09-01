@@ -7,6 +7,8 @@ exports.default = void 0;
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
+var _mongoosePaginateV = _interopRequireDefault(require("mongoose-paginate-v2"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var customerSchema = new _mongoose.default.Schema({
@@ -46,6 +48,7 @@ customerSchema.set('toJSON', {
     delete ret.__v;
   }
 });
+customerSchema.plugin(_mongoosePaginateV.default);
 
 var _default = _mongoose.default.model('customer', customerSchema);
 

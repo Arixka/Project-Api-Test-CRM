@@ -11,7 +11,7 @@
     "start": "node build/app.js --exec babel-node",
     "dev": "nodemon src/app.js --exec babel-node",
     "build": "babel src --out-dir build",
-    "test": "jest --verbose"
+    "test": " jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,7 @@
     "mongoose-paginate-v2": "^1.4.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
+    "supertest": "^6.1.6",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

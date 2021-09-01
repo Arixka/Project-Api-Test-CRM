@@ -2,16 +2,19 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
 dotenv.config()
+
+const {MONGO_URL_ATLAS, MONGO_URL_ATLAS_TEST,NODE_ENV }= process.env
+
+const connectionUrl= NODE_ENV === 'test' ? MONGO_URL_ATLAS_TEST : MONGO_URL_ATLAS
+
 mongoose
-    .connect(process.env.MONGO_URL_ATLAS, {
+    .connect(connectionUrl, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
     .then((db) => {
-        if (process.env.NODE_ENV !== 'dev') {
-            console.log('App is running ... \n')
-            console.log('Connected to %s', db.connection.host)
-            console.log('\nPress CTRL + C to stop the process. \n')
+        if (NODE_ENV !== 'dev') {
+            console.log('Connected to %s', db.connection.name)
         }
         
     })

@@ -39,7 +39,7 @@ app.listen(process.env.PORT, err => {
   }
 
   console.info('>'.repeat(40));
-  console.info('💻  Project Test Api CRM');
+  console.info('💻 \x1b[35m   Project Test Api CRM \x1b[0m');
   console.info("\uD83D\uDCE1 Server is running on PORT:", process.env.PORT);
   console.info('>'.repeat(40) + '\n');
 });

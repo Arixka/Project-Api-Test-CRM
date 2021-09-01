@@ -76,9 +76,16 @@ exports.createUser = createUser;
 
 var getAllUsers = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator(function* (req, res) {
-    //TODO paginado
     try {
-      var users = yield _user.default.find();
+      var {
+        page,
+        limit
+      } = req.query;
+      var options = {
+        page: parseInt(page, 10) || 1,
+        limit: parseInt(limit, 10) || 10
+      };
+      var users = yield _user.default.paginate({}, options);
       res.status(200).json(users);
     } catch (error) {
       console.log(error);
@@ -108,7 +115,7 @@ var getUserById = /*#__PURE__*/function () {
       res.status(200).json(user);
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      res.status(404).send({
         msg: error
       });
     }

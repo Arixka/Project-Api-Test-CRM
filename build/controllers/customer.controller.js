@@ -37,8 +37,7 @@ var createCustomer = /*#__PURE__*/function () {
         name,
         lastName,
         phone
-      } = req.body; // const image = await uploadFile(req.files)
-
+      } = req.body;
       var {
         tempFilePath
       } = req.files.image;
@@ -61,7 +60,7 @@ var createCustomer = /*#__PURE__*/function () {
       });
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      res.status(400).send({
         msg: error
       });
     }
@@ -82,9 +81,16 @@ exports.createCustomer = createCustomer;
 
 var getAllCustomers = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator(function* (req, res) {
-    //TODO paginado
     try {
-      var customers = yield _customer.default.find();
+      var {
+        page,
+        limit
+      } = req.query;
+      var options = {
+        page: parseInt(page, 10) || 1,
+        limit: parseInt(limit, 10) || 10
+      };
+      var customers = yield _customer.default.paginate({}, options);
       res.status(200).json(customers);
     } catch (error) {
       console.log(error);
@@ -114,7 +120,7 @@ var getCustomerById = /*#__PURE__*/function () {
       res.status(200).json(customer);
     } catch (error) {
       console.log(error);
-      res.status(500).send({
+      res.status(404).send({
         msg: error
       });
     }

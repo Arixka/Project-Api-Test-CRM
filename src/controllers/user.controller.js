@@ -64,7 +64,7 @@ export const getUserById = async (req, res) => {
         res.status(200).json(user)
     } catch (error) {
         console.log(error)
-        res.status(500).send({ msg: error })
+        res.status(404).send({ msg: error })
     }
 }
 

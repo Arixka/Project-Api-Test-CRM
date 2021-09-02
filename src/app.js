@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import fileUpload from 'express-fileupload'
 
 dotenv.config()
+require('./config/db')
 const app = express()
     .use(cors())
     .use(morgan(process.env.NODE_ENV))
@@ -17,7 +18,6 @@ const app = express()
     }))
     .use(require('./routes/index.routes'))
     .use(express.static('public'))
-require('./config/server')
 
 app.get('/', (req, res) => {
     res.send('Hello world')

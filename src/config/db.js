@@ -13,7 +13,7 @@ mongoose
         useUnifiedTopology: true
     })
     .then((db) => {
-        if (NODE_ENV !== 'dev') {
+        if (NODE_ENV !== 'test') {
             console.log('Connected to %s', db.connection.name)
         }
         

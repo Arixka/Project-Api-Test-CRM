@@ -9,9 +9,10 @@
   },
   "scripts": {
     "start": "node build/app.js --exec babel-node",
-    "dev": "nodemon src/app.js --exec babel-node",
+    "dev": "NODE_ENV=dev nodemon src/app.js --exec babel-node",
     "build": "babel src --out-dir build",
-    "test": " jest --verbose"
+    "test": "NODE_ENV=test jest --verbose --silent --maxWorkers=1",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",

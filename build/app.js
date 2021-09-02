@@ -21,15 +21,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _dotenv.default.config();
 
+require('./config/db');
+
 var app = (0, _express.default)().use((0, _cors.default)()).use((0, _morgan.default)(process.env.NODE_ENV)).use(_express.default.urlencoded({
   extended: true
 })).use(_express.default.json()).use((0, _expressFileupload.default)({
   useTempFiles: true,
   tempFileDir: '/tmp/'
 })).use(require('./routes/index.routes')).use(_express.default.static('public'));
-
-require('./config/server');
-
 app.get('/', (req, res) => {
   res.send('Hello world');
 });

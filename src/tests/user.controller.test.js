@@ -1,1 +1,0 @@
-import {createUser} from '../controllers/user.controller'

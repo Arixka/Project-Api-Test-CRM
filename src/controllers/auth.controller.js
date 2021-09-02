@@ -48,7 +48,11 @@ export const googleLogin = async (req, res, next) => {
             new: true
         })
         const token = await generateJWT(user._id)
-        res.status(201).json({ msg: 'Login with google corrected', userUpdate, token })
+        res.status(201).json({
+            msg: 'Login with google corrected',
+            userUpdate,
+            token
+        })
     } catch (error) {
         res.status(401).send({ msg: `Token not valid ${error}` })
     }

@@ -35,7 +35,7 @@
 
 <h2 id="about-the-project"> About The Project</h2>
 
-The main objective of this project is to create a fully functional api-restfull
+The main objective of this project is to create a fully functional RESTful API
 to manage a small store.
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)

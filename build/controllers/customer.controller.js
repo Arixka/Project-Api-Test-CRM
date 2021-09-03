@@ -59,7 +59,6 @@ var createCustomer = /*#__PURE__*/function () {
         newCustomer
       });
     } catch (error) {
-      console.log(error);
       res.status(400).send({
         msg: error
       });
@@ -93,7 +92,6 @@ var getAllCustomers = /*#__PURE__*/function () {
       var customers = yield _customer.default.paginate({}, options);
       res.status(200).json(customers);
     } catch (error) {
-      console.log(error);
       res.status(500).send({
         msg: error
       });
@@ -119,7 +117,6 @@ var getCustomerById = /*#__PURE__*/function () {
       var customer = yield _customer.default.findById(req.params.userId);
       res.status(200).json(customer);
     } catch (error) {
-      console.log(error);
       res.status(404).send({
         msg: error
       });
@@ -174,7 +171,6 @@ var updateCustomerById = /*#__PURE__*/function () {
         customerUpdate
       });
     } catch (error) {
-      console.log(error);
       res.status(500).send({
         msg: error
       });
@@ -203,7 +199,6 @@ var deleteCustomerById = /*#__PURE__*/function () {
         customer
       });
     } catch (error) {
-      console.log(error);
       res.status(500).send({
         msg: error
       });

@@ -32,7 +32,6 @@ export const createCustomer = async (req, res) => {
             newCustomer
         })
     } catch (error) {
-        console.log(error)
         res.status(400).send({ msg: error })
     }
 }
@@ -54,7 +53,6 @@ export const getAllCustomers = async (req, res) => {
         const customers = await CustModel.paginate({}, options)
         res.status(200).json(customers)
     } catch (error) {
-        console.log(error)
         res.status(500).send({ msg: error })
     }
 }
@@ -70,7 +68,6 @@ export const getCustomerById = async (req, res) => {
         const customer = await CustModel.findById(req.params.userId)
         res.status(200).json(customer)
     } catch (error) {
-        console.log(error)
         res.status(404).send({ msg: error })
     }
 }
@@ -106,7 +103,6 @@ export const updateCustomerById = async (req, res) => {
         const customerUpdate = await customer.save()
         res.status(201).send({ msg: 'Customer updated', customerUpdate })
     } catch (error) {
-        console.log(error)
         res.status(500).send({ msg: error })
     }
 }
@@ -121,7 +117,6 @@ export const deleteCustomerById = async (req, res) => {
         const customer = await CustModel.findByIdAndDelete(req.params.userId)
         res.status(200).json({ msg: 'Customer deleted', customer })
     } catch (error) {
-        console.log(error)
         res.status(500).send({ msg: error })
     }
 }

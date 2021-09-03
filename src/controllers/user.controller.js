@@ -24,7 +24,6 @@ export const createUser = async (req, res) => {
         const newUser = await user.save()
         res.status(201).send({ msg: 'New user registered', newUser })
     } catch (error) {
-        console.log(error)
         res.status(500).send({ msg: error })
     }
 }
@@ -47,7 +46,6 @@ export const getAllUsers = async (req, res) => {
 
         res.status(200).json(users)
     } catch (error) {
-        console.log(error)
         res.status(500).send({ msg: error })
     }
 }
@@ -63,7 +61,6 @@ export const getUserById = async (req, res) => {
         const user = await UserModel.findById(req.params.userId)
         res.status(200).json(user)
     } catch (error) {
-        console.log(error)
         res.status(404).send({ msg: error })
     }
 }
@@ -88,7 +85,6 @@ export const updateUserById = async (req, res) => {
         )
         res.status(201).send({ msg: 'User updated', user })
     } catch (error) {
-        console.log(error)
         res.status(500).send({ msg: error })
     }
 }
@@ -101,10 +97,8 @@ export const updateUserById = async (req, res) => {
 export const deleteUserById = async (req, res) => {
     try {
         const  user  = await UserModel.findByIdAndDelete(req.params.userId)
-        
         res.status(200).json({ msg: 'User deleted', user })
     } catch (error) {
-        console.log(error)
         res.status(500).send({ msg: error })
     }
 }

@@ -54,7 +54,6 @@ var createUser = /*#__PURE__*/function () {
         newUser
       });
     } catch (error) {
-      console.log(error);
       res.status(500).send({
         msg: error
       });
@@ -88,7 +87,6 @@ var getAllUsers = /*#__PURE__*/function () {
       var users = yield _user.default.paginate({}, options);
       res.status(200).json(users);
     } catch (error) {
-      console.log(error);
       res.status(500).send({
         msg: error
       });
@@ -114,7 +112,6 @@ var getUserById = /*#__PURE__*/function () {
       var user = yield _user.default.findById(req.params.userId);
       res.status(200).json(user);
     } catch (error) {
-      console.log(error);
       res.status(404).send({
         msg: error
       });
@@ -157,7 +154,6 @@ var updateUserById = /*#__PURE__*/function () {
         user
       });
     } catch (error) {
-      console.log(error);
       res.status(500).send({
         msg: error
       });
@@ -186,7 +182,6 @@ var deleteUserById = /*#__PURE__*/function () {
         user
       });
     } catch (error) {
-      console.log(error);
       res.status(500).send({
         msg: error
       });

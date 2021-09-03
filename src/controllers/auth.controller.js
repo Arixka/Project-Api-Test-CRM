@@ -2,7 +2,6 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { generateJWT } from '../helpers/generateJWT'
 import { googleVerify } from '../helpers/googleVerify'
-
 import UserModel from '../models/user.model'
 
 /**

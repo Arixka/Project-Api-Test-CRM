@@ -32,7 +32,7 @@ var app = (0, _express.default)().use((0, _cors.default)()).use((0, _morgan.defa
 app.get('/', (req, res) => {
   res.send('Hello world');
 });
-app.listen(process.env.PORT, err => {
+app.listen(process.env.PORT || 3000, err => {
   if (err) {
     throw new Error(err);
   }

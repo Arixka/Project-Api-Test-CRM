@@ -3,24 +3,12 @@ import { check } from 'express-validator'
 import { validateReq } from '../middlewares/validateReq'
 import { validateImage } from '../middlewares/validateImage'
 import { checkToken, isAdmin, authorizedRole } from '../middlewares/checkAuth'
-import {
-    emailExist,
-    idCustomerExist,
-    customerExist,
-    roleValid
-} from '../helpers/validations-mongodb'
-import {
-    createCustomer,
-    getAllCustomers,
-    getCustomerById,
-    updateCustomerById,
-    deleteCustomerById
-} from '../controllers/customer.controller'
-
+import * as customerCtrl from '../controllers/customer.controller'
+import * as validateDB from '../helpers/validations-mongodb'
 
 const router = Router()
 
-router.get('/', checkToken, getAllCustomers)
+router.get('/', checkToken, customerCtrl.getAllCustomers)
 
 router.get(
     '/:userId',
@@ -28,10 +16,10 @@ router.get(
         checkToken,
         authorizedRole('ADMIN', 'USER'),
         check('userId', 'Id not valid').isMongoId(),
-        check('userId').custom(idCustomerExist),
+        check('userId').custom(validateDB.idCustomerExist),
         validateReq
     ],
-    getCustomerById
+    customerCtrl.getCustomerById
 )
 
 router.post(
@@ -43,11 +31,11 @@ router.post(
         check('name', 'Name is required').not().isEmpty(),
         check('lastName', 'LastName is required').not().isEmpty(),
         check('phone', 'Phone is required').not().isEmpty(),
-        check('phone').custom(customerExist),
+        check('phone').custom(validateDB.customerExist),
         check('phone', 'Must be a phone number').isMobilePhone(),
         validateReq
     ],
-    createCustomer
+    customerCtrl.createCustomer
 )
 
 router.put(
@@ -56,10 +44,10 @@ router.put(
         checkToken,
         authorizedRole('ADMIN', 'USER'),
         check('userId', 'Id not valid').isMongoId(),
-        check('userId').custom(idCustomerExist),
+        check('userId').custom(validateDB.idCustomerExist),
         validateReq
     ],
-    updateCustomerById
+    customerCtrl.updateCustomerById
 )
 
 router.delete(
@@ -68,9 +56,10 @@ router.delete(
         checkToken,
         authorizedRole('ADMIN', 'USER'),
         check('userId', 'Id not valid').isMongoId(),
-        check('userId').custom(idCustomerExist),
+        check('userId').custom(validateDB.idCustomerExist),
         validateReq
     ],
-    deleteCustomerById
+    customerCtrl.deleteCustomerById
 )
+
 module.exports = router

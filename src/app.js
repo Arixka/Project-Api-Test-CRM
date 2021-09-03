@@ -12,10 +12,12 @@ const app = express()
     .use(morgan(process.env.NODE_ENV))
     .use(express.urlencoded({ extended: true }))
     .use(express.json())
-    .use(fileUpload({
-        useTempFiles : true,
-        tempFileDir : '/tmp/'
-    }))
+    .use(
+        fileUpload({
+            useTempFiles: true,
+            tempFileDir: '/tmp/'
+        })
+    )
     .use(require('./routes/index.routes'))
     .use(express.static('public'))
 
@@ -23,7 +25,7 @@ app.get('/', (req, res) => {
     res.send('Hello world')
 })
 
-app.listen(process.env.PORT, (err) => {
+app.listen(process.env.PORT || 3000, (err) => {
     if (err) {
         throw new Error(err)
     }

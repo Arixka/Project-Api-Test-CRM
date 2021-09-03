@@ -2,22 +2,12 @@ import { Router } from 'express'
 import { check } from 'express-validator'
 import { validateReq } from '../middlewares/validateReq'
 import { checkToken, isAdmin } from '../middlewares/checkAuth'
-import {
-    emailExist,
-    idUserExist,
-    roleValid
-} from '../helpers/validations-mongodb'
-import {
-    createUser,
-    getAllUsers,
-    getUserById,
-    updateUserById,
-    deleteUserById
-} from '../controllers/user.controller'
+import * as validateDB from '../helpers/validations-mongodb'
+import * as userCrtl from '../controllers/user.controller'
 
 const router = Router()
 
-router.get('/', checkToken, isAdmin, getAllUsers)
+router.get('/', checkToken, isAdmin, userCrtl.getAllUsers)
 
 router.get(
     '/:userId',
@@ -25,10 +15,10 @@ router.get(
         checkToken,
         isAdmin,
         check('userId', 'Id not valid').isMongoId(),
-        check('userId').custom(idUserExist),
+        check('userId').custom(validateDB.idUserExist),
         validateReq
     ],
-    getUserById
+    userCrtl.getUserById
 )
 
 router.post(
@@ -38,16 +28,16 @@ router.post(
         isAdmin,
         check('name', 'Name is required').not().isEmpty(),
         check('lastName', 'LastName is required').not().isEmpty(),
-        check('email').custom(emailExist),
+        check('email').custom(validateDB.emailExist),
         check('email', 'E-mail invalid').isEmail(),
         check('password', 'min. 6 characters')
             .not()
             .isEmpty()
             .isLength({ min: 6 }),
-        check('role').custom(roleValid),
+        check('role').custom(validateDB.roleValid),
         validateReq
     ],
-    createUser
+    userCrtl.createUser
 )
 
 router.put(
@@ -56,10 +46,10 @@ router.put(
         checkToken,
         isAdmin,
         check('userId', 'Id not valid').isMongoId(),
-        check('userId').custom(idUserExist),
+        check('userId').custom(validateDB.idUserExist),
         validateReq
     ],
-    updateUserById
+    userCrtl.updateUserById
 )
 
 router.delete(
@@ -68,10 +58,10 @@ router.delete(
         checkToken,
         isAdmin,
         check('userId', 'Id not valid').isMongoId(),
-        check('userId').custom(idUserExist),
+        check('userId').custom(validateDB.idUserExist),
         validateReq
     ],
-    deleteUserById
+    userCrtl.deleteUserById
 )
 
 module.exports = router

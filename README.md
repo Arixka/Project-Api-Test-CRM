@@ -141,11 +141,6 @@ and modifying the desired variables.
 $ git clone https://github.com/Arixka/Project-Api-Test-CRM
 ```
 
-<h3>Installing dependencies</h3>
-
-```bash
-$ npm install
-```
 
 <h3>Docker compose</h3>
 

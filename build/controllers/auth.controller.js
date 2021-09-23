@@ -38,7 +38,8 @@ var login = /*#__PURE__*/function () {
       });
       if (!_bcryptjs.default.compareSync(password, user.password)) return res.status(401).json({
         msg: 'Wrong password'
-      });
+      }); //TODO 400 o 401?
+
       var token = yield (0, _generateJWT.generateJWT)(user._id);
       res.status(200).json({
         user,

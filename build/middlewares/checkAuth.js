@@ -79,14 +79,14 @@ var authorizedRole = function authorizedRole() {
 
   return (req, res, next) => {
     if (!req.userAuth) {
-      return res.status(500).json({
+      return res.status(401).json({
         msg: 'You have no permissions'
       });
     }
 
     if (!roles.includes(req.userAuth.role)) {
       return res.status(401).json({
-        msg: "you must be an authorized role"
+        msg: 'you must be an authorized role'
       });
     }
 

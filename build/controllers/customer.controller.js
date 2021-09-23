@@ -45,18 +45,18 @@ var createCustomer = /*#__PURE__*/function () {
         secure_url
       } = yield cloudinary.uploader.upload(tempFilePath);
       var image = secure_url;
-      var customer = yield (0, _customer.default)({
+      var newCustomer = yield (0, _customer.default)({
         name,
         lastName,
         phone,
         image
       });
       var userAuth = req.userAuth;
-      customer.created = userAuth.id;
-      var newCustomer = yield customer.save();
+      newCustomer.created = userAuth.id;
+      var customer = yield newCustomer.save();
       res.status(201).send({
         msg: 'New customer registered',
-        newCustomer
+        customer
       });
     } catch (error) {
       res.status(400).send({

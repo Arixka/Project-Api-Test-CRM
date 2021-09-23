@@ -41,17 +41,17 @@ var createUser = /*#__PURE__*/function () {
 
       var passHash = _bcryptjs.default.hashSync(password, salt);
 
-      var user = new _user.default({
+      var newUser = new _user.default({
         name,
         lastName,
         email,
         password: passHash,
         role
       });
-      var newUser = yield user.save();
+      var user = yield newUser.save();
       res.status(201).send({
         msg: 'New user registered',
-        newUser
+        user
       });
     } catch (error) {
       res.status(500).send({
@@ -112,6 +112,7 @@ var getUserById = /*#__PURE__*/function () {
       var user = yield _user.default.findById(req.params.userId);
       res.status(200).json(user);
     } catch (error) {
+      //TODO no mandar el error que exponemos cosas
       res.status(404).send({
         msg: error
       });

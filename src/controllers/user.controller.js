@@ -13,7 +13,7 @@ export const createUser = async (req, res) => {
         const salt = bcrypt.genSaltSync()
         const passHash = bcrypt.hashSync(password, salt)
 
-        const user = new UserModel({
+        const newUser = new UserModel({
             name,
             lastName,
             email,
@@ -21,8 +21,8 @@ export const createUser = async (req, res) => {
             role
         })
 
-        const newUser = await user.save()
-        res.status(201).send({ msg: 'New user registered', newUser })
+        const user = await newUser.save()
+        res.status(201).send({ msg: 'New user registered', user })
     } catch (error) {
         res.status(500).send({ msg: error })
     }
@@ -35,12 +35,11 @@ export const createUser = async (req, res) => {
  */
 
 export const getAllUsers = async (req, res) => {
-
     try {
         const { page, limit } = req.query
         const options = {
-          page: parseInt(page, 10) || 1,
-          limit: parseInt(limit, 10) || 10,
+            page: parseInt(page, 10) || 1,
+            limit: parseInt(limit, 10) || 10
         }
         const users = await UserModel.paginate({}, options)
 
@@ -61,6 +60,7 @@ export const getUserById = async (req, res) => {
         const user = await UserModel.findById(req.params.userId)
         res.status(200).json(user)
     } catch (error) {
+        //TODO no mandar el error que exponemos cosas
         res.status(404).send({ msg: error })
     }
 }
@@ -96,7 +96,7 @@ export const updateUserById = async (req, res) => {
  */
 export const deleteUserById = async (req, res) => {
     try {
-        const  user  = await UserModel.findByIdAndDelete(req.params.userId)
+        const user = await UserModel.findByIdAndDelete(req.params.userId)
         res.status(200).json({ msg: 'User deleted', user })
     } catch (error) {
         res.status(500).send({ msg: error })

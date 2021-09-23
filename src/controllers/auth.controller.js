@@ -17,7 +17,7 @@ export const login = async (req, res) => {
 
         if (!bcrypt.compareSync(password, user.password))
             return res.status(401).json({ msg: 'Wrong password' })
-
+//TODO 400 o 401?
         const token = await generateJWT(user._id)
 
         res.status(200).json({ user, token })

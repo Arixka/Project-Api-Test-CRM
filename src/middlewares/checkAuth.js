@@ -14,7 +14,7 @@ export const checkToken = async (req, res, next) => {
             if (!user) return res.status(401).json({ msg: 'User not exist' })
 
             req.userAuth = user
-            
+
             next()
         } catch (error) {
             res.status(400).json({ msg: 'Error checkToken ' + error })
@@ -23,7 +23,6 @@ export const checkToken = async (req, res, next) => {
 }
 
 export const isAdmin = (req, res, next) => {
-
     if (!req.userAuth) {
         return res.status(401).json({ msg: 'This token not valid' })
     }
@@ -35,19 +34,18 @@ export const isAdmin = (req, res, next) => {
     next()
 }
 
+export const authorizedRole = (...roles) => {
+    return (req, res, next) => {
+        if (!req.userAuth) {
+            return res.status(401).json({ msg: 'You have no permissions' })
+        }
 
-export const authorizedRole = (...roles) =>{
-   
-    return (req, res, next)=>{
+        if (!roles.includes(req.userAuth.role)) {
+            return res
+                .status(401)
+                .json({ msg: 'you must be an authorized role' })
+        }
 
-      if(!req.userAuth){
-        return res.status(500).json({msg:'You have no permissions'})
-      }
-
-      if(!roles.includes(req.userAuth.role)){
-        return res.status(401).json({msg:`you must be an authorized role`})
-      }
-  
-      next()
+        next()
     }
-  }
+}

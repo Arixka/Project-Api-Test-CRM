@@ -10,7 +10,7 @@ router.post(
     [
         check('email', 'E-mail is required').not().isEmpty(),
         check('email', 'E-mail invalid').isEmail(),
-        check('password', 'El password es obligatorio').not().isEmpty(),
+        check('password', 'Password is required').not().isEmpty(),
         validateReq
     ],
     login

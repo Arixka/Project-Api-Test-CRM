@@ -16,7 +16,7 @@ export const createCustomer = async (req, res) => {
         const { tempFilePath } = req.files.image
         const { secure_url } = await cloudinary.uploader.upload(tempFilePath)
         const image = secure_url
-        const customer = await CustModel({
+        const newCustomer = await CustModel({
             name,
             lastName,
             phone,
@@ -24,12 +24,13 @@ export const createCustomer = async (req, res) => {
         })
 
         const userAuth = req.userAuth
-        customer.created = userAuth.id
+        newCustomer.created = userAuth.id
 
-        const newCustomer = await customer.save()
+        const customer = await newCustomer.save()
+
         res.status(201).send({
             msg: 'New customer registered',
-            newCustomer
+            customer
         })
     } catch (error) {
         res.status(400).send({ msg: error })
@@ -43,7 +44,6 @@ export const createCustomer = async (req, res) => {
  */
 
 export const getAllCustomers = async (req, res) => {
-
     try {
         const { page, limit } = req.query
         const options = {
